@@ -225,4 +225,12 @@ class LineBeakerView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : LineBeakerView {
+            val view : LineBeakerView = LineBeakerView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
