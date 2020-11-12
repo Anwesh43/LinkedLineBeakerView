@@ -7,6 +7,8 @@ import android.graphics.Color
 import android.graphics.Canvas
 import android.graphics.Path
 import android.graphics.RectF
+import android.content.Context
+import android.app.Activity
 
 val parts : Int = 5
 val strokeFactor : Float = 90f
@@ -70,4 +72,20 @@ fun Canvas.drawLBNode(i : Int, scale : Float, paint : Paint) {
     paint.strokeCap = Paint.Cap.ROUND
     paint.strokeWidth = Math.min(w, h) / strokeFactor
     drawLineBeaker(scale, w, h, paint)
+}
+
+class LineBeakerView(ctx : Context) : View(ctx) {
+
+    override fun onDraw(canvas : Canvas) {
+
+    }
+
+    override fun onTouchEvent(event : MotionEvent) : Boolean {
+        when (event.action) {
+            MotionEvent.ACTION_DOWN -> {
+
+            }
+        }
+        return true
+    }
 }
