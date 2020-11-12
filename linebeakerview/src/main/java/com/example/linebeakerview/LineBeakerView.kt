@@ -41,7 +41,7 @@ fun Canvas.drawLineBeakerPath(sf : Float, size : Float, wSize : Float, paint : P
     save()
     val path : Path = Path()
     path.moveTo(-size, -wSize)
-    path.lineTo(size, wSize)
+    path.lineTo(size, -wSize)
     path.arcTo(RectF(size - wSize, -wSize, size + wSize, wSize), -90f, 180f)
     path.lineTo(-size, wSize)
     clipPath(path)
@@ -58,7 +58,8 @@ fun Canvas.drawLineBeaker(scale : Float, w : Float, h : Float, paint : Paint) {
     rotate(rot * sf.divideScale(3, parts))
     paint.style = Paint.Style.STROKE
     for (j in 0..1) {
-        drawLine(-size, -wSize + 2 * wSize * j, -size + 2 * size * sf.divideScale(j * 2, parts), -wSize + 2 * wSize * j, paint)
+        val sfj : Float = sf.divideScale(j * 2, parts)
+        drawLine(-size + 2 * size * j * (1 - sfj) , -wSize + 2 * wSize * j, -size + 2 * size * sfj * (1 - j) + 2 * size * j, -wSize + 2 * wSize * j, paint)
     }
     drawArc(RectF(size - wSize, -wSize, size + wSize, wSize), -90f, 180f * sf.divideScale(1, parts), false, paint)
     drawLineBeakerPath(sf, size, wSize, paint)
