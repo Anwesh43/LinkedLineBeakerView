@@ -1,0 +1,3 @@
+include ':linebeakerview'
+include ':app'
+rootProject.name = "LinkedLineBeakerView"
