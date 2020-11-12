@@ -200,4 +200,27 @@ class LineBeakerView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineBeakerView) {
+
+        private val animator : Animator = Animator(view)
+        private val lb : LineBeaker = LineBeaker(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lb.draw(canvas, paint)
+            animator.animate {
+                lb.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lb.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
